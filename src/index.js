@@ -8,6 +8,7 @@ import TeamsPage from "./routes/TeamsPage";
 import PlayersPage from "./routes/PlayersPage";
 import CoachesPage from "./routes/CoachesPage";
 import Navbar from "./components/Navbar";
+import LeaguesPage from "./routes/LeaguesPage";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -19,6 +20,7 @@ root.render(
         <Route path="teams" element={<TeamsPage />} />
         <Route path="players" element={<PlayersPage />} />
         <Route path="coaches" element={<CoachesPage />} />
+        <Route path="leagues" element={<LeaguesPage />} />
       </Routes>
     </BrowserRouter>
   </React.StrictMode>

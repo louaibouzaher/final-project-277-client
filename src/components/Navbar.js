@@ -19,6 +19,10 @@ export default function Navbar() {
       name: "Coaches",
       link: "/coaches",
     },
+    {
+      name: "Leagues",
+      link: "/leagues",
+    },
   ];
   return (
     <nav className="z-10 absolute w-full space-x-4 flex justify-center items-center text-xl font-bold text-white bg-green-600 py-3">
