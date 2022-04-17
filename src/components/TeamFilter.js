@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-export default function PlayerFilter({ handleSubmit }) {
+export default function TeamFilter({ handleSubmit }) {
   const [state, setState] = useState({});
 
   const handleChange = (e) => {
@@ -16,33 +16,25 @@ export default function PlayerFilter({ handleSubmit }) {
     <div>
       <div className="font-bold text-xl">Filters</div>
       <div className="flex flex-col">
-        <label for="numberOfGoals">Number of goals</label>
+        <label for="numberOfTrophies">Number of trophies</label>
         <input
           type="number"
-          name="numberOfGoals"
+          name="numberOfTrophies"
           onChange={handleChange}
           className="border-2 border-green-600 rounded-md h-10 p-1"
           min={0}
         />
-        <label for="shirtNumber">Shirt Number</label>
-        <input
-          type="number"
-          name="shirtNumber"
-          onChange={handleChange}
-          className="border-2 border-green-600 rounded-md h-10 p-1"
-          min={1}
-        />
-        <label for="currentClub">Current Club</label>
+        <label for="country">Country</label>
         <input
           type="text"
-          name="currentClub"
+          name="country"
           onChange={handleChange}
           className="border-2 border-green-600 rounded-md h-10 p-1"
         />
-        <label for="nationalTeam">National Team</label>
+        <label for="stadium">Stadium Name</label>
         <input
           type="text"
-          name="nationalTeam"
+          name="stadium"
           onChange={handleChange}
           className="border-2 border-green-600 rounded-md h-10 p-1"
           min={0}
