@@ -9,6 +9,8 @@ import PlayersPage from "./routes/PlayersPage";
 import CoachesPage from "./routes/CoachesPage";
 import Navbar from "./components/Navbar";
 import LeaguesPage from "./routes/LeaguesPage";
+import CreatePlayer from "./routes/CreatePlayer";
+import CreateTeam from "./routes/CreateTeam";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -18,7 +20,9 @@ root.render(
       <Routes>
         <Route path="/" element={<App />} />
         <Route path="teams" element={<TeamsPage />} />
+        <Route path="teams/create" element={<CreateTeam />} />
         <Route path="players" element={<PlayersPage />} />
+        <Route path="players/create" element={<CreatePlayer />} />
         <Route path="coaches" element={<CoachesPage />} />
         <Route path="leagues" element={<LeaguesPage />} />
       </Routes>
