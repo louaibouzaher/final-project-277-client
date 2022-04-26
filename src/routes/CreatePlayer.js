@@ -1,5 +1,7 @@
 import React, { useState } from "react";
-
+import { notify } from "../helpers/notification";
+import axios from "axios";
+import { API_BASEURL } from "../appConfig";
 export default function CreatePlayer() {
   const [player, setPlayer] = useState({});
 
@@ -7,8 +9,11 @@ export default function CreatePlayer() {
     setPlayer({ ...player, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = () => {
-    console.log(player);
+  const handleSubmit = async () => {
+    await axios.post(`${API_BASEURL}/players/create`, player).then((res) => {
+      console.log(res);
+      notify("Player Created Successfully");
+    });
   };
   return (
     <div className="">
@@ -16,7 +21,7 @@ export default function CreatePlayer() {
         <div className="text-2xl my-2 font-bold">Adding New Player</div>
         <input
           placeholder="First Name"
-          className="w-1/4 border-2 border-green-600 rounded-md h-10 p-1 my-1"
+          className="w-1/2 border-2 border-green-600 rounded-md h-10 p-1 my-1"
           type="text"
           name="firstName"
           value={player.firstName}
@@ -24,7 +29,7 @@ export default function CreatePlayer() {
         />
         <input
           placeholder="Last Name"
-          className="w-1/4 border-2 border-green-600 rounded-md h-10 p-1 my-1"
+          className="w-1/2 border-2 border-green-600 rounded-md h-10 p-1 my-1"
           type="text"
           name="lastName"
           value={player.lastName}
@@ -32,31 +37,55 @@ export default function CreatePlayer() {
         />
         <input
           placeholder="Paste picture link here"
-          className="w-1/4 border-2 border-green-600 rounded-md h-10 p-1 my-1"
+          className="w-1/2 border-2 border-green-600 rounded-md h-10 p-1 my-1"
           type="text"
           name="picture"
           value={player.picture}
           onChange={handleChange}
         />
         <input
+          placeholder="Position"
+          className="w-1/2 border-2 border-green-600 rounded-md h-10 p-1 my-1"
+          type="text"
+          name="position"
+          value={player.position}
+          onChange={handleChange}
+        />
+        <input
           placeholder=""
-          className="w-1/4 border-2 border-green-600 rounded-md h-10 p-1 my-1"
+          className="w-1/2 border-2 border-green-600 rounded-md h-10 p-1 my-1"
           type="date"
-          name="birthday"
+          name="birthdate"
           value={player.birthdate}
           onChange={handleChange}
         />
         <input
           placeholder="Current Club"
-          className="w-1/4 border-2 border-green-600 rounded-md h-10 p-1 my-1"
+          className="w-1/2 border-2 border-green-600 rounded-md h-10 p-1 my-1"
           type="text"
           name="currentClub"
           value={player.currentClub}
           onChange={handleChange}
         />
         <input
+          placeholder="Shirt Number"
+          className="w-1/2 border-2 border-green-600 rounded-md h-10 p-1 my-1"
+          type="text"
+          name="shirtNumber"
+          value={player.shirtNumber}
+          onChange={handleChange}
+        />
+        <input
+          placeholder="Nationality"
+          className="w-1/2 border-2 border-green-600 rounded-md h-10 p-1 my-1"
+          type="text"
+          name="nationality"
+          value={player.nationality}
+          onChange={handleChange}
+        />
+        <input
           placeholder="National Team"
-          className="w-1/4 border-2 border-green-600 rounded-md h-10 p-1 my-1"
+          className="w-1/2 border-2 border-green-600 rounded-md h-10 p-1 my-1"
           type="text"
           name="nationalTeam"
           value={player.nationalTeam}
@@ -64,7 +93,7 @@ export default function CreatePlayer() {
         />
         <input
           placeholder="Number of goals"
-          className="w-1/4 border-2 border-green-600 rounded-md h-10 p-1 my-1"
+          className="w-1/2 border-2 border-green-600 rounded-md h-10 p-1 my-1"
           type="number"
           min={0}
           name="numberOfGoals"
@@ -73,7 +102,7 @@ export default function CreatePlayer() {
         />
         <input
           placeholder="Number of trophies"
-          className="w-1/4 border-2 border-green-600 rounded-md h-10 p-1 my-1"
+          className="w-1/2 border-2 border-green-600 rounded-md h-10 p-1 my-1"
           type="number"
           min={0}
           name="numberOfTrophies"

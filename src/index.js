@@ -11,12 +11,24 @@ import Navbar from "./components/Navbar";
 import LeaguesPage from "./routes/LeaguesPage";
 import CreatePlayer from "./routes/CreatePlayer";
 import CreateTeam from "./routes/CreateTeam";
+import { ToastContainer } from "react-toastify";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
     <BrowserRouter>
       <Navbar />
+      <ToastContainer
+        position="bottom-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+      />
       <Routes>
         <Route path="/" element={<App />} />
         <Route path="teams" element={<TeamsPage />} />
