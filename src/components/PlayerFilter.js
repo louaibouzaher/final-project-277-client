@@ -24,6 +24,14 @@ export default function PlayerFilter({ handleSubmit }) {
           className="border-2 border-green-600 rounded-md h-10 p-1"
           min={0}
         />
+        <label for="numberOfGoals">Number of assists</label>
+        <input
+          type="number"
+          name="numberOfAssits"
+          onChange={handleChange}
+          className="border-2 border-green-600 rounded-md h-10 p-1"
+          min={0}
+        />
         <label for="shirtNumber">Shirt Number</label>
         <input
           type="number"
@@ -32,17 +40,17 @@ export default function PlayerFilter({ handleSubmit }) {
           className="border-2 border-green-600 rounded-md h-10 p-1"
           min={1}
         />
-        <label for="currentClub">Current Club</label>
+        <label for="club">Current Club</label>
         <input
           type="text"
-          name="currentClub"
+          name="club"
           onChange={handleChange}
           className="border-2 border-green-600 rounded-md h-10 p-1"
         />
-        <label for="nationalTeam">National Team</label>
+        <label for="nationTeam">National Team</label>
         <input
           type="text"
-          name="nationalTeam"
+          name="nationTeam"
           onChange={handleChange}
           className="border-2 border-green-600 rounded-md h-10 p-1"
           min={0}

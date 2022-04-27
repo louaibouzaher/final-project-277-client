@@ -1,20 +1,39 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { notify } from "../helpers/notification";
 import axios from "axios";
 import { API_BASEURL } from "../appConfig";
+import { useLocation } from "react-router-dom";
+
 export default function CreatePlayer() {
   const [player, setPlayer] = useState({});
+  const [isEditing, setIsEditing] = useState(false);
+  const location = useLocation();
+  console.log(location.state);
 
   const handleChange = (e) => {
     setPlayer({ ...player, [e.target.name]: e.target.value });
   };
 
   const handleSubmit = async () => {
-    await axios.post(`${API_BASEURL}/players/create`, player).then((res) => {
-      console.log(res);
-      notify("Player Created Successfully");
-    });
+    if (isEditing) {
+      await axios
+        .put(`${API_BASEURL}/players/update/${player.id}`, player)
+        .then((res) => {
+          console.log(res);
+          notify("Player Updated Successfully");
+        });
+    } else {
+      await axios.post(`${API_BASEURL}/players/create`, player).then((res) => {
+        console.log(res);
+        notify("Player Created Successfully");
+      });
+    }
   };
+
+  useEffect(() => {
+    setIsEditing(location.state ? true : false);
+    setPlayer(location.state ? location.state : {});
+  }, []);
   return (
     <div className="">
       <div className="py-20 px-20 flex flex-col">
@@ -63,8 +82,8 @@ export default function CreatePlayer() {
           placeholder="Current Club"
           className="w-1/2 border-2 border-green-600 rounded-md h-10 p-1 my-1"
           type="text"
-          name="currentClub"
-          value={player.currentClub}
+          name="club"
+          value={player.club}
           onChange={handleChange}
         />
         <input
@@ -87,8 +106,17 @@ export default function CreatePlayer() {
           placeholder="National Team"
           className="w-1/2 border-2 border-green-600 rounded-md h-10 p-1 my-1"
           type="text"
-          name="nationalTeam"
-          value={player.nationalTeam}
+          name="nationTeam"
+          value={player.nationTeam}
+          onChange={handleChange}
+        />
+        <input
+          placeholder="Number of assits"
+          className="w-1/2 border-2 border-green-600 rounded-md h-10 p-1 my-1"
+          type="number"
+          min={0}
+          name="numberOfAssists"
+          value={player.numberOfAssists}
           onChange={handleChange}
         />
         <input
