@@ -1,7 +1,11 @@
 import React, { useState } from "react";
 
-export default function TeamFilter({ handleSubmit }) {
-  const [state, setState] = useState({});
+export default function TeamFilter({ reset, handleSubmit }) {
+  const [state, setState] = useState({
+    numberOfTrophies: 0,
+    country: null,
+    stadium: null,
+  });
 
   const handleChange = (e) => {
     setState({ ...state, [e.target.name]: e.target.value });
@@ -9,7 +13,7 @@ export default function TeamFilter({ handleSubmit }) {
 
   const handleReset = () => {
     setState({});
-    handleSubmit({});
+    reset();
   };
 
   return (
@@ -24,7 +28,7 @@ export default function TeamFilter({ handleSubmit }) {
           className="border-2 border-green-600 rounded-md h-10 p-1"
           min={0}
         />
-        <label for="country">Country</label>
+        <label for="country">Country/Continent</label>
         <input
           type="text"
           name="country"
@@ -37,7 +41,6 @@ export default function TeamFilter({ handleSubmit }) {
           name="stadium"
           onChange={handleChange}
           className="border-2 border-green-600 rounded-md h-10 p-1"
-          min={0}
         />
       </div>
       <div className="my-3">
