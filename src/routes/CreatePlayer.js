@@ -34,10 +34,13 @@ export default function CreatePlayer() {
     setIsEditing(location.state ? true : false);
     setPlayer(location.state ? location.state : {});
   }, []);
+
   return (
     <div className="">
       <div className="py-20 px-20 flex flex-col">
-        <div className="text-2xl my-2 font-bold">Adding New Player</div>
+        <div className="text-2xl my-2 font-bold">
+          {isEditing ? `Editing Player` : `Adding New Player`}
+        </div>
         <input
           placeholder="First Name"
           className="w-1/2 border-2 border-green-600 rounded-md h-10 p-1 my-1"

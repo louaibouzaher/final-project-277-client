@@ -4,7 +4,6 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
 export default function PlayerCard({ player }) {
-  console.log(player);
   const navigate = useNavigate();
 
   const handleDelete = async () => {
@@ -14,7 +13,9 @@ export default function PlayerCard({ player }) {
         console.log(res);
       });
   };
-
+  const date = new Date(player.birthdate);
+  const birthdate =
+    date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + date.getDate();
   const handleEdit = () => {
     navigate("/players/create", { state: player });
   };
@@ -44,7 +45,7 @@ export default function PlayerCard({ player }) {
       <div className="font-bold">
         {player.firstName} {player.lastName}
       </div>
-      <div>{player.birthdate}</div>
+      <div>{birthdate}</div>
       <div>
         {" "}
         {player.club} # {player.shirtNumber}

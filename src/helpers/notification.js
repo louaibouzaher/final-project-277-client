@@ -2,5 +2,5 @@ import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 export const notify = (message) => {
-  toast.info("Player Created Successfully");
+  toast.info(message);
 };
