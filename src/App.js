@@ -10,6 +10,19 @@ function App() {
         Firas Noun <br />
       </div>
       <div className="text-center my-8">Prof. Maurice Khabbaz</div>
+      <br />
+      <br />
+      <div className="text-xl my-1 font-bold">Notes</div>
+      <div>
+        - Before adding a new player, you need to add both his/her club and
+        national team. <br />
+        - Before adding a new coach, you need to add a team. <br />
+        - Before adding a new match, you need to add a referee. <br />
+        - Before adding a new champion, you need to add a team and a league.{" "}
+        <br />
+        - You cannot delete a referee if he/she refereed a match in one of the
+        leagues. <br />
+      </div>
     </div>
   );
 }

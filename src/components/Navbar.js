@@ -20,6 +20,10 @@ export default function Navbar() {
       link: "/coaches",
     },
     {
+      name: "Referees",
+      link: "/referees",
+    },
+    {
       name: "Leagues",
       link: "/leagues",
     },

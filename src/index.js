@@ -4,17 +4,19 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
+import { ToastContainer } from "react-toastify";
+import Navbar from "./components/Navbar";
 import TeamsPage from "./routes/TeamsPage";
 import PlayersPage from "./routes/PlayersPage";
 import CoachesPage from "./routes/CoachesPage";
-import Navbar from "./components/Navbar";
 import LeaguesPage from "./routes/LeaguesPage";
+import RefereesPage from "./routes/RefereesPage";
 import CreatePlayer from "./routes/CreatePlayer";
 import CreateTeam from "./routes/CreateTeam";
-import { ToastContainer } from "react-toastify";
 import CreateCoach from "./routes/CreateCoach";
 import CreateMatch from "./routes/CreateMatch";
 import CreateChampion from "./routes/CreateChampion";
+import CreateReferee from "./routes/CreateReferee";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -40,6 +42,8 @@ root.render(
         <Route path="players/create" element={<CreatePlayer />} />
         <Route path="coaches" element={<CoachesPage />} />
         <Route path="coaches/create" element={<CreateCoach />} />
+        <Route path="referees" element={<RefereesPage />} />
+        <Route path="referees/create" element={<CreateReferee />} />
         <Route path="leagues" element={<LeaguesPage />} />
         <Route path="/leagues/champions/create" element={<CreateChampion />} />
         <Route path="/leagues/matches/create" element={<CreateMatch />} />
