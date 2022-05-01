@@ -2,10 +2,11 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { API_BASEURL } from "../appConfig";
 import { notify } from "../helpers/notification";
-
+import { useNavigate } from "react-router-dom";
 export default function LeagueCard({ league }) {
   const [champions, setChampions] = useState([]);
   const [matches, setMatches] = useState([]);
+  const navigate = useNavigate();
   console.log(league);
 
   const getMatches = async () => {
@@ -18,7 +19,7 @@ export default function LeagueCard({ league }) {
         setMatches(res.data);
       })
       .catch((e) => {
-        notify(e);
+        notify(JSON.stringify(e));
       });
   };
   const getChampions = async () => {
@@ -30,8 +31,24 @@ export default function LeagueCard({ league }) {
         setChampions(res.data);
       })
       .catch((e) => {
-        notify(e);
+        notify(JSON.stringify(e));
       });
+  };
+
+  const handleDelete = async () => {
+    await axios
+      .delete(`${API_BASEURL}/leagues/delete/${league.Id}`)
+      .then((res) => {
+        console.log(res);
+        notify("League Deleted Successfully");
+      })
+      .catch((e) => {
+        notify(JSON.stringify(e));
+      });
+  };
+
+  const handleEdit = () => {
+    navigate("/leagues/create", { state: league });
   };
 
   useEffect(() => {
@@ -39,7 +56,7 @@ export default function LeagueCard({ league }) {
     getChampions();
   }, []);
   return (
-    <div className="w-full my-3 mx-1 bg-green-200 rounded-md shadow-md p-4 flex  items-start space-x-2">
+    <div className="relative w-full my-3 mx-1 bg-green-200 rounded-md shadow-md p-4 flex  items-start space-x-2">
       <div
         className="rounded-md my-2"
         style={{
@@ -50,11 +67,22 @@ export default function LeagueCard({ league }) {
           backgroundPosition: "center",
         }}
       ></div>
-
+      <div
+        className="text-blue-600 absolute top-6 right-10 font-bold"
+        onClick={handleEdit}
+      >
+        Edit
+      </div>
+      <div
+        className="text-red-600 absolute top-6 right-20 font-bold"
+        onClick={handleDelete}
+      >
+        Delete
+      </div>
       <div className="flex flex-col p-1 ">
         <div className="text-2xl font-bold my-1">{league.leagueName}</div>
 
-        <div className="border-2 border-black max-w-fit px-1 rounded-md">
+        <div className="border-2 border-black max-w-max  px-1 rounded-md">
           {" "}
           {league.leagueType}{" "}
         </div>

@@ -22,7 +22,7 @@ export default function CreateReferee() {
           notify("Referee Updated Successfully");
         })
         .catch((e) => {
-          notify(e);
+          notify(JSON.stringify(e));
         });
     } else {
       await axios
@@ -32,7 +32,7 @@ export default function CreateReferee() {
           notify("Referee Created Successfully");
         })
         .catch((e) => {
-          notify(e);
+          notify(JSON.stringify(e));
         });
     }
   };

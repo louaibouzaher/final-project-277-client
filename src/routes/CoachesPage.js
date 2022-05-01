@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
-
 import { Link } from "react-router-dom";
 import { API_BASEURL } from "../appConfig";
 import axios from "axios";
 import CoachCard from "../components/CoachCard";
+import { notify } from "../helpers/notification";
 
 export default function CoachesPage({}) {
   const [coaches, setCoaches] = useState([]);
@@ -12,19 +12,25 @@ export default function CoachesPage({}) {
     await axios
       .post(`${API_BASEURL}/coaches/filter`, filters)
       .then((res) => {
-        console.log(res);
         setCoaches(res.data);
       })
       .catch((e) => {
+        notify(JSON.stringify(e));
         setCoaches([]);
         console.log(e);
       });
   };
 
   const getCoaches = async () => {
-    await axios.get(`${API_BASEURL}/coaches/all`).then((res) => {
-      setCoaches(res.data);
-    });
+    await axios
+      .get(`${API_BASEURL}/coaches/all`)
+      .then((res) => {
+        setCoaches(res.data);
+      })
+      .catch((e) => {
+        setCoaches([]);
+        notify(JSON.stringify(e));
+      });
   };
   useEffect(() => {
     getCoaches();

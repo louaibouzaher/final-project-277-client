@@ -8,7 +8,6 @@ export default function CreatePlayer() {
   const [player, setPlayer] = useState({});
   const [isEditing, setIsEditing] = useState(false);
   const location = useLocation();
-  console.log(location.state);
 
   const handleChange = (e) => {
     setPlayer({ ...player, [e.target.name]: e.target.value });
@@ -23,7 +22,7 @@ export default function CreatePlayer() {
           notify("Player Updated Successfully");
         })
         .catch((e) => {
-          notify(e);
+          notify(JSON.stringify(e));
         });
     } else {
       await axios
@@ -33,7 +32,7 @@ export default function CreatePlayer() {
           notify("Player Created Successfully");
         })
         .catch((e) => {
-          notify(e);
+          notify(JSON.stringify(e));
         });
     }
   };

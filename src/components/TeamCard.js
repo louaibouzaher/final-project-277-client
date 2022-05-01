@@ -2,15 +2,20 @@ import React from "react";
 import { API_BASEURL } from "../appConfig";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-
+import { notify } from "../helpers/notification";
 export default function TeamCard({ team }) {
   const navigate = useNavigate();
 
-  console.log(team);
   const handleDelete = async () => {
-    await axios.delete(`${API_BASEURL}/teams/delete/${team.ID}`).then((res) => {
-      console.log(res);
-    });
+    await axios
+      .delete(`${API_BASEURL}/teams/delete/${team.ID}`)
+      .then((res) => {
+        notify("Team Deleted Successfully");
+        console.log(res);
+      })
+      .catch((e) => {
+        notify(JSON.stringify(e));
+      });
   };
 
   const handleEdit = () => {

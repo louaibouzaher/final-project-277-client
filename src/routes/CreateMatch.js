@@ -18,7 +18,7 @@ export default function CreateMatch() {
         notify("Match Added Successfully");
       })
       .catch((e) => {
-        notify(e);
+        notify(JSON.stringify(e));
       });
   };
 

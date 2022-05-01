@@ -4,6 +4,7 @@ import TeamFilter from "../components/TeamFilter";
 import { Link } from "react-router-dom";
 import { API_BASEURL } from "../appConfig";
 import axios from "axios";
+import { notify } from "../helpers/notification";
 
 export default function TeamsPage() {
   const [nationalTeams, setNationalTeams] = useState([]);
@@ -18,7 +19,7 @@ export default function TeamsPage() {
       })
       .catch((e) => {
         setNationalTeams([]);
-        console.log(e);
+        notify(JSON.stringify(e));
       });
     await axios
       .post(`${API_BASEURL}/teams/club/filter`, filters)
@@ -28,7 +29,7 @@ export default function TeamsPage() {
       })
       .catch((e) => {
         setClubs([]);
-        console.log(e);
+        notify(JSON.stringify(e));
       });
   };
   const getNationalTeams = async () => {
@@ -38,6 +39,7 @@ export default function TeamsPage() {
         setNationalTeams(res.data);
       })
       .catch((e) => {
+        notify(JSON.stringify(e));
         setNationalTeams([]);
       });
   };
@@ -48,6 +50,7 @@ export default function TeamsPage() {
         setClubs(res.data);
       })
       .catch((e) => {
+        notify(JSON.stringify(e));
         setClubs([]);
       });
   };

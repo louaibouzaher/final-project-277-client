@@ -17,6 +17,7 @@ import CreateCoach from "./routes/CreateCoach";
 import CreateMatch from "./routes/CreateMatch";
 import CreateChampion from "./routes/CreateChampion";
 import CreateReferee from "./routes/CreateReferee";
+import CreateLeague from "./routes/CreateLeague";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -45,6 +46,7 @@ root.render(
         <Route path="referees" element={<RefereesPage />} />
         <Route path="referees/create" element={<CreateReferee />} />
         <Route path="leagues" element={<LeaguesPage />} />
+        <Route path="leagues/create" element={<CreateLeague />} />
         <Route path="/leagues/champions/create" element={<CreateChampion />} />
         <Route path="/leagues/matches/create" element={<CreateMatch />} />
       </Routes>

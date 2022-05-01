@@ -4,6 +4,7 @@ import PlayerFilter from "../components/PlayerFilter";
 import { Link } from "react-router-dom";
 import { API_BASEURL } from "../appConfig";
 import axios from "axios";
+import { notify } from "../helpers/notification";
 export default function PlayersPage() {
   const [players, setPlayers] = useState([]);
 
@@ -16,13 +17,19 @@ export default function PlayersPage() {
       })
       .catch((e) => {
         setPlayers([]);
-        console.log(e);
+        notify(JSON.stringify(e));
       });
   };
   const getPlayers = async () => {
-    await axios.get(`${API_BASEURL}/players/all`).then((res) => {
-      setPlayers(res.data);
-    });
+    await axios
+      .get(`${API_BASEURL}/players/all`)
+      .then((res) => {
+        setPlayers(res.data);
+      })
+      .catch((e) => {
+        setPlayers([]);
+        notify(JSON.stringify(e));
+      });
   };
   useEffect(() => {
     getPlayers();

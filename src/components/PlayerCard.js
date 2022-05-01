@@ -12,9 +12,10 @@ export default function PlayerCard({ player }) {
       .delete(`${API_BASEURL}/players/delete/${player.id}`)
       .then((res) => {
         console.log(res);
+        notify("Player Deleted Successfully");
       })
       .catch((e) => {
-        notify(e);
+        notify(JSON.stringify(e));
       });
   };
   const date = new Date(player.birthdate);

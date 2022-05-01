@@ -1,10 +1,9 @@
 import React, { useState, useEffect } from "react";
-
 import { Link } from "react-router-dom";
 import { API_BASEURL } from "../appConfig";
 import axios from "axios";
 import RefereeCard from "../components/RefereeCard";
-
+import { notify } from "../helpers/notification";
 export default function RefereesPage({}) {
   const [referees, setReferees] = useState([]);
 
@@ -22,9 +21,15 @@ export default function RefereesPage({}) {
   // };
 
   const getReferees = async () => {
-    await axios.get(`${API_BASEURL}/referees/all`).then((res) => {
-      setReferees(res.data);
-    });
+    await axios
+      .get(`${API_BASEURL}/referees/all`)
+      .then((res) => {
+        setReferees(res.data);
+      })
+      .catch((e) => {
+        setReferees([]);
+        notify(JSON.stringify(e));
+      });
   };
   useEffect(() => {
     getReferees();

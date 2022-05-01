@@ -18,7 +18,7 @@ export default function CreateChampion() {
         notify("Champion Added Successfully");
       })
       .catch((e) => {
-        notify(e);
+        notify(JSON.stringify(e));
       });
   };
   return (

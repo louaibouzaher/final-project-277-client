@@ -2,6 +2,7 @@ import React from "react";
 import { API_BASEURL } from "../appConfig";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { notify } from "../helpers/notification";
 export default function CoachCard({ coach }) {
   const navigate = useNavigate();
 
@@ -9,7 +10,11 @@ export default function CoachCard({ coach }) {
     await axios
       .delete(`${API_BASEURL}/coaches/delete/${coach.people_Id}`)
       .then((res) => {
+        notify("Coach Deleted Successfully");
         console.log(res);
+      })
+      .catch((e) => {
+        notify(JSON.stringify(e));
       });
   };
   const date = new Date(coach.birthDate);

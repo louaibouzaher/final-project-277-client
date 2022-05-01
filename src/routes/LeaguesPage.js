@@ -5,20 +5,32 @@ import { Link } from "react-router-dom";
 import { API_BASEURL } from "../appConfig";
 import axios from "axios";
 import LeagueCard from "../components/LeagueCard";
-
+import { notify } from "../helpers/notification";
 export default function LeaguesPage() {
   const [Leagues, setLeagues] = useState([]);
   console.log(Leagues);
   const getLeagues = async () => {
-    await axios.get(`${API_BASEURL}/leagues/all`).then((res) => {
-      setLeagues(res.data);
-    });
+    await axios
+      .get(`${API_BASEURL}/leagues/all`)
+      .then((res) => {
+        setLeagues(res.data);
+      })
+      .catch((e) => {
+        setLeagues([]);
+        notify(JSON.stringify(e));
+      });
   };
   useEffect(() => {
     getLeagues();
   }, []);
   return (
     <div className="w-full p-20 px-56 ">
+      <Link
+        to={"/leagues/create"}
+        className="mx-2 hover:text-amber-400 text-white font-bold  rounded-md bg-green-700 py-2 px-4"
+      >
+        Add New League
+      </Link>
       <Link
         to={"/leagues/champions/create"}
         className="mx-2 hover:text-amber-400 text-white font-bold  rounded-md bg-green-700 py-2 px-4"
