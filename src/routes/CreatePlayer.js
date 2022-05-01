@@ -21,12 +21,20 @@ export default function CreatePlayer() {
         .then((res) => {
           console.log(res);
           notify("Player Updated Successfully");
+        })
+        .catch((e) => {
+          notify(e);
         });
     } else {
-      await axios.post(`${API_BASEURL}/players/create`, player).then((res) => {
-        console.log(res);
-        notify("Player Created Successfully");
-      });
+      await axios
+        .post(`${API_BASEURL}/players/create`, player)
+        .then((res) => {
+          console.log(res);
+          notify("Player Created Successfully");
+        })
+        .catch((e) => {
+          notify(e);
+        });
     }
   };
 

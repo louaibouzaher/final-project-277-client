@@ -26,6 +26,9 @@ export default function CreateTeam() {
           .then((res) => {
             console.log(res);
             notify("International Team Created Successfully");
+          })
+          .catch((e) => {
+            notify(e);
           });
       } else {
         await axios
@@ -33,6 +36,9 @@ export default function CreateTeam() {
           .then((res) => {
             console.log(res);
             notify("Club Created Successfully");
+          })
+          .catch((e) => {
+            notify(e);
           });
       }
     }

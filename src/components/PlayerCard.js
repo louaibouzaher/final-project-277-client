@@ -2,6 +2,7 @@ import React from "react";
 import { API_BASEURL } from "../appConfig";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { notify } from "../helpers/notification";
 
 export default function PlayerCard({ player }) {
   const navigate = useNavigate();
@@ -11,6 +12,9 @@ export default function PlayerCard({ player }) {
       .delete(`${API_BASEURL}/players/delete/${player.id}`)
       .then((res) => {
         console.log(res);
+      })
+      .catch((e) => {
+        notify(e);
       });
   };
   const date = new Date(player.birthdate);

@@ -20,12 +20,20 @@ export default function CreateCoach() {
         .then((res) => {
           console.log(res);
           notify("Coach Updated Successfully");
+        })
+        .catch((e) => {
+          notify(e);
         });
     } else {
-      await axios.post(`${API_BASEURL}/coaches/create`, coach).then((res) => {
-        console.log(res);
-        notify("Coach Created Successfully");
-      });
+      await axios
+        .post(`${API_BASEURL}/coaches/create`, coach)
+        .then((res) => {
+          console.log(res);
+          notify("Coach Created Successfully");
+        })
+        .catch((e) => {
+          notify(e);
+        });
     }
   };
 

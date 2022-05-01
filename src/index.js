@@ -13,6 +13,8 @@ import CreatePlayer from "./routes/CreatePlayer";
 import CreateTeam from "./routes/CreateTeam";
 import { ToastContainer } from "react-toastify";
 import CreateCoach from "./routes/CreateCoach";
+import CreateMatch from "./routes/CreateMatch";
+import CreateChampion from "./routes/CreateChampion";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -39,6 +41,8 @@ root.render(
         <Route path="coaches" element={<CoachesPage />} />
         <Route path="coaches/create" element={<CreateCoach />} />
         <Route path="leagues" element={<LeaguesPage />} />
+        <Route path="/leagues/champions/create" element={<CreateChampion />} />
+        <Route path="/leagues/matches/create" element={<CreateMatch />} />
       </Routes>
     </BrowserRouter>
   </React.StrictMode>
